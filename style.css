@@ -1,0 +1,370 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Lato', sans-serif;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #2c3e50;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    transition: transform 1s ease-in-out;
+}
+
+.cover h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+#open-button {
+    padding: 10px 25px;
+    font-size: 1rem;
+    background: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#open-button:hover {
+    background: #c0392b;
+}
+
+.content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ecf0f1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+}
+
+.container.open .cover {
+    transform: translateY(-100%);
+}
+
+.container.open .content {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.content h2 {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; /* Made smaller */
+    color: #2c3e50;
+}
+
+.content p {
+    font-size: 1.2rem; /* Adjusted for space */
+    color: #34495e;
+    text-align: center;
+    padding: 0 20px;
+    position: absolute;
+    bottom: 40px;
+    width: 90%;
+}
+
+.cake-container {
+    position: relative;
+    margin-top: 50px; /* Space for the title */
+}
+
+.cake {
+    position: relative;
+    width: 200px;
+    height: 200px;
+}
+
+.tier-1 {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 100px;
+    background: #add8e6; /* Light Blue */
+    border-radius: 10px 10px 0 0;
+    border: 2px solid #888;
+    opacity: 0;
+}
+
+.tier-2 {
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 160px;
+    height: 90px;
+    background: #e6e6fa; /* Lavender */
+    border-radius: 10px 10px 0 0;
+    border: 2px solid #888;
+    opacity: 0;
+}
+
+.candle {
+    position: absolute;
+    bottom: 190px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 40px;
+    background: #fff;
+    opacity: 0;
+}
+
+.candle::after {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 15px;
+    background: #ffac33;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    animation: flicker 1s ease-in-out infinite;
+}
+
+@keyframes flicker {
+    0%, 100% {
+        opacity: 1;
+        transform: translateX(-50%) scaleY(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: translateX(-50%) scaleY(0.95);
+    }
+}
+
+#surprise-image {
+
+    position: absolute;
+
+    top: 50%;
+
+    left: 50%;
+
+    transform: translate(-50%, -50%) scale(0.5);
+
+    max-width: 50%;
+
+    max-height: 40%;
+
+    border-radius: 15px;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+
+    opacity: 0;
+
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+
+    z-index: 10; /* Ensure it's above other elements if needed */
+
+}
+
+
+
+#surprise-image.show {
+
+    opacity: 1;
+
+    transform: translate(-50%, -50%) scale(1);
+
+}
+
+
+
+.cake-container.animate .tier-1 {
+
+    animation: slide-up 0.5s ease-out forwards;
+
+}
+
+
+
+.cake-container.animate .tier-2 {
+
+    animation: slide-up 0.5s ease-out 0.5s forwards; /* Delay by 0.5s */
+
+}
+
+
+
+.cake-container.animate .candle {
+
+    animation: fade-in 0.5s ease-in 1s forwards; /* Delay by 1s */
+
+}
+
+
+
+@keyframes slide-up {
+
+    from {
+
+        transform: translate(-50%, 100%);
+
+        opacity: 0;
+
+    }
+
+    to {
+
+        transform: translate(-50%, 0);
+
+        opacity: 1;
+
+    }
+
+}
+
+
+
+@keyframes fade-in {
+
+    from {
+
+        opacity: 0;
+
+    }
+
+    to {
+
+        opacity: 1;
+
+    }
+
+}
+
+#animation-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.balloon {
+    position: absolute;
+    width: 50px;
+    height: 60px;
+    background-color: rgba(255, 0, 0, 0.7);
+    border-radius: 50%;
+    animation: fly-up 10s linear infinite;
+}
+
+.balloon:before {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 20px;
+    background-color: #333;
+}
+
+.betta {
+    position: absolute;
+    width: 80px;
+    height: 40px;
+    background: linear-gradient(45deg, #ff4e50, #f9d423);
+    border-radius: 50%;
+    animation: swim-around 15s linear infinite;
+}
+
+.betta:before, .betta:after {
+    content: "";
+    position: absolute;
+    background: linear-gradient(135deg, #f9d423, #ff4e50);
+}
+
+.betta:before {
+    top: -10px;
+    right: -20px;
+    width: 40px;
+    height: 20px;
+    border-radius: 0 50% 50% 0;
+    transform-origin: left center;
+    animation: tail-flow 1s ease-in-out infinite;
+}
+
+.betta:after {
+    bottom: 5px;
+    right: -25px;
+    width: 50px;
+    height: 25px;
+    border-radius: 0 50% 50% 0;
+    transform-origin: left center;
+    animation: tail-flow 1.2s ease-in-out infinite;
+}
+
+
+@keyframes fly-up {
+    0% {
+        transform: translateY(100vh) scale(1);
+    }
+    100% {
+        transform: translateY(-100px) scale(1.2);
+    }
+}
+
+@keyframes tail-flow {
+    0%, 100% {
+        transform: rotate(5deg);
+    }
+    50% {
+        transform: rotate(-5deg);
+    }
+}
+
+@keyframes swim-around {
+    0% {
+        transform: translateX(-100px) translateY(50vh) rotate(0deg);
+    }
+    25% {
+        transform: translateX(50vw) translateY(20vh) rotate(20deg);
+    }
+    50% {
+        transform: translateX(100vw) translateY(80vh) rotate(0deg);
+    }
+    75% {
+        transform: translateX(50vw) translateY(60vh) rotate(-20deg);
+    }
+    100% {
+        transform: translateX(-100px) translateY(50vh) rotate(0deg);
+    }
+}
